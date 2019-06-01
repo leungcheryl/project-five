@@ -7,11 +7,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      userInput: ''
+      userInput: '',
+      movieId: [],
+      movie: []
     }
   }
 
-  getMovie() {
+  getMovieId() {
     const movieInput = this.state.userInput
     console.log(movieInput)
 
@@ -30,10 +32,43 @@ class App extends Component {
           }
         )
         .then(response => {
+          
+          response = response.data.items
           console.log(response)
+          
+          const id = response.map(movies => {
+            return movies.id
+          })
+
+          console.log(id)
+          this.setState ({
+            movieId:id
+          })
+          console.log(this.state.movieId)
+
+          const inputId = this.state.movieId;
+          
+        
+          inputId.map((value) => {
+            const url = `https://cors-anywhere.herokuapp.com/https://www.doesthedogdie.com/media/${value}`
+            return axios.get(`${url}`, {
+              method: 'GET',
+              dataType: 'json',
+              headers: {
+                'X-API-KEY': 'e39ba046c39413e2c04848ae44e80a73',
+                Accept: 'application/json'
+              }
+            })
+            .then(result => {
+              console.log(result)
+            })
+          })
+          
+
         })
 
-  } 
+  }
+
 
   handleChange = (event) => {
     this.setState({
@@ -46,7 +81,7 @@ class App extends Component {
     this.setState({
       userInput: ''
     })
-    this.getMovie()
+    this.getMovieId()
   }
 
   render() {
