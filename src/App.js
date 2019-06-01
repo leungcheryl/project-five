@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
-function App() {
-  return (
+class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+     
+    }
+  }
+
+  componentDidMount() {
+
+    axios.get('https://cors-anywhere.herokuapp.com/https://www.doesthedogdie.com/search?', {
+      method: 'GET',
+      dataType: 'json',
+      headers: {
+        "X-API-KEY": "e39ba046c39413e2c04848ae44e80a73",
+        "Accept": "application/json"
+      },
+      params: {
+        q: `marley`
+      }
+    }).then(response => {
+      console.log(response)
+    })
+  }s
+
+  render() {
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type='text' placeholder='Enter your search term' name='search' />
     </div>
-  );
+    );
+  }
+  
 }
 
 export default App;
+
