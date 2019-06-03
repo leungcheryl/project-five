@@ -172,12 +172,13 @@ class App extends Component {
 
   render() {
     return (
+
     <div className="wrapper">
 
-      <div className="main">
+      <div className="header-container">
         <div className="header">
-          <h1>Safe for Dogs:</h1>
-           <h2>Movie Edition</h2>
+          <h1>The Movie Guard</h1>
+           <h2>Doggy Edition</h2>
           <img src={movieicon} alt="Picture of Popcorn, Movie Items"/>
         </div>
         <div className="background-dog">
@@ -187,37 +188,40 @@ class App extends Component {
           <p>Scroll Down To Search a Movie <span>&#9660;</span>
           </p>
         </div>
-
-      </div>
-      <div className="form">
-        
-        <form>
-         
-
-          <input 
-            onChange={this.handleChange} 
-            type='text' 
-            placeholder='Type Movie Here' 
-            value={this.state.userInput}
-            name='search' />
-          <button onClick={this.handleClick}>Search!</button>
-          <button type="reset" value="Reset" onClick={this.handleReset}>Reset</button>
-        </form>
       </div>
 
+      <div className="main-container">
+        <div className="form-description">
+          <img src={movieimg} alt="Movie and Popcorn Icons"/>
+          <p>No one wants to see a dog die in a movie.</p> <p>Search a movie in the box and press the Search! button to make sure you never have to see a movie that a dog dies in again.</p><p> Protect dogs at all costs!</p>
+        </div>
+        <div className="form">
+          <form>
+            <input 
+              onChange={this.handleChange} 
+              type='text' 
+              placeholder='Type Movie Here' 
+              value={this.state.userInput}
+              name='search' />
+            <button onClick={this.handleClick}>Search!</button>
+            <button type="reset" value="Reset" onClick={this.handleReset}>Reset</button>
+          </form>
+        </div>
+      </div>
       <div className="display">
-        { this.state.allMovies.map(movie => {
+        {this.state.allMovies.map(movie => {
           return (
             <div>
-              <DisplayMovie 
+              <DisplayMovie
                 img={movie.poster}
-                name={movie.name}  
-                dogStat= {formatDogDeath(movie.dogDies)}
+                name={movie.name}
+                dogStat={formatDogDeath(movie.dogDies)}
               />
             </div>
           )
         })}
       </div>
+
     </div>
     );
   }
