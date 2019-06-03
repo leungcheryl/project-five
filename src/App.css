@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,600|Limelight|Poiret+One|Pompiere|Ribeye|Sarina&display=swap');
+
+
+.main {
+    display: flex;
+    height: 100vh;
+}
+
+.scroll-note {
+    margin-top: -5%;
+    padding-left: 3%;
+    font-family: 'Josefin Slab', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    letter-spacing: 1.5px;
+}
+
+.scroll-note span {
+    font-size: 1rem;
+}
+
+.header {
+    width: 65%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 2%;
+    transform: rotate(-20deg);
+}
+
+.header img {
+    width: 25%;
+    padding-top: 3%;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Ribeye', cursive;
+    margin-bottom: 2%;
+    font-size: 6rem;
+    
+}
+
+h2 {
+    font-family: 'Sarina', cursive;
+    margin-top: 0;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.background-dog {
+    width: 60%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: -10%;
+}
+
+.background-dog img {
+    max-width: 100%;
+    margin-top: 10vh;
+}

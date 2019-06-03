@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import DisplayMovie from './DisplayMovie.js';
+import movieimg from './assets/img-1.jpg';
+import maindog from './assets/main-dog.png'
+import movieicon from './assets/movie-icon.png'
+
 
 const formatDogDeath = (value) => {
-  if (value === null) return 'Unknown - Watch At Your Own Risk';
-  if (!value) return 'A Dog Doesn\'t Die';
-  return 'A Dog Dies';
+  if (value === null) return 'Watch At Your Own Risk';
+  if (value === false) return 'A Dog Doesn\'t Die';
+  if (value === true) return 'A Dog Dies';
 };
+
 
 class App extends Component {
   constructor() {
@@ -65,8 +71,9 @@ class App extends Component {
               Accept: 'application/json'
             }
           })
-         
+          
           const newResult = Object.values(result.data.topicItemStats[0]);
+          console.log(newResult)
           const yes = newResult[0];
           const no = newResult[1]
           let dogDies;
@@ -96,23 +103,37 @@ class App extends Component {
   getPoster() {
     
     const selectedMovies = this.state.allMovies;
+    console.log(selectedMovies)
     Promise.all(selectedMovies.map(async (value, i) => {
       try {
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=8d57b009677e25546dc89ff6368e4fbe&query=${value.name}`
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=8d57b009677e25546dc89ff6368e4fbe&`
+       
         const poster = await axios.get(`${url}`, {
         method: 'GET',
-        dataType: 'jsonp'
+        dataType: 'jsonp',
+        params: {
+          query:`${value.name}`
+        }
         })
+        console.log(poster)
         const resultPoster = poster.data.results
         const moviePoster = resultPoster.map(post => {
           return post.poster_path
         })
+       
+          let posterUrl;
 
-        const posterUrl = `http://image.tmdb.org/t/p/w500${moviePoster[0]}`
-        return {
-          ...this.state.allMovies[i],
-          poster: posterUrl
-        }
+          if (moviePoster[0] === undefined) {
+            posterUrl = `https://antmovies.tv/uploads/no-poster.png`
+          } else {
+            posterUrl = `http://image.tmdb.org/t/p/w500${moviePoster[0]}`
+          }
+
+          return {
+            ...this.state.allMovies[i],
+            poster: posterUrl
+          }
+
       } catch (err) {
         console.log(err)
       }
@@ -138,30 +159,61 @@ class App extends Component {
     this.componentDidMount()
   }
 
+  handleReset = (event) => {
+    event.preventDefault();
+    this.setState ({
+      allMovies : ['']
+    })
+  }
+
   componentWillUnmount() {
     this._isMounted = false
   }
 
   render() {
     return (
-    <div className="App">
+    <div className="wrapper">
 
-      <form action="">
-        <input 
-          onChange={this.handleChange} 
-          type='text' 
-          placeholder='Type Movie Here' 
-          value={this.state.userInput}
-          name='search' />
-        <button onClick={this.handleClick}>Search!</button>
-      </form>
+      <div className="main">
+        <div className="header">
+          <h1>Safe for Dogs:</h1>
+           <h2>Movie Edition</h2>
+          <img src={movieicon} alt="Picture of Popcorn, Movie Items"/>
+        </div>
+        <div className="background-dog">
+          <img src={maindog} alt="Dog wearing 3D glasses and holding popcorn"/>
+        </div>
+        <div className='scroll-note'>
+          <p>Scroll Down To Search a Movie <span>&#9660;</span>
+          </p>
+        </div>
+
+      </div>
+      <div className="form">
+        
+        <form>
+         
+
+          <input 
+            onChange={this.handleChange} 
+            type='text' 
+            placeholder='Type Movie Here' 
+            value={this.state.userInput}
+            name='search' />
+          <button onClick={this.handleClick}>Search!</button>
+          <button type="reset" value="Reset" onClick={this.handleReset}>Reset</button>
+        </form>
+      </div>
 
       <div className="display">
         { this.state.allMovies.map(movie => {
           return (
             <div>
-              <img src={movie.poster} alt={movie.name}/>
-              {movie.name} : {formatDogDeath(movie.dogDies)}
+              <DisplayMovie 
+                img={movie.poster}
+                name={movie.name}  
+                dogStat= {formatDogDeath(movie.dogDies)}
+              />
             </div>
           )
         })}
