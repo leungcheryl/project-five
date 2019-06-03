@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/project-five/./static/css/main.2db4d1cf.chunk.css",
+    "main.js": "/project-five/./static/js/main.835c33bb.chunk.js",
+    "main.js.map": "/project-five/./static/js/main.835c33bb.chunk.js.map",
+    "runtime~main.js": "/project-five/./static/js/runtime~main.459b389a.js",
+    "runtime~main.js.map": "/project-five/./static/js/runtime~main.459b389a.js.map",
+    "static/js/2.076809b5.chunk.js": "/project-five/./static/js/2.076809b5.chunk.js",
+    "static/js/2.076809b5.chunk.js.map": "/project-five/./static/js/2.076809b5.chunk.js.map",
+    "index.html": "/project-five/./index.html",
+    "precache-manifest.e27ae8b68f18d492622566ccd49a7cd6.js": "/project-five/./precache-manifest.e27ae8b68f18d492622566ccd49a7cd6.js",
+    "service-worker.js": "/project-five/./service-worker.js",
+    "static/css/main.2db4d1cf.chunk.css.map": "/project-five/./static/css/main.2db4d1cf.chunk.css.map",
+    "static/media/img-1.jpg": "/project-five/./static/media/img-1.29d7d591.jpg",
+    "static/media/lifeguard-stamp.jpg": "/project-five/./static/media/lifeguard-stamp.0018d617.jpg",
+    "static/media/main-dog.png": "/project-five/./static/media/main-dog.5610defc.png",
+    "static/media/movie-icon.png": "/project-five/./static/media/movie-icon.2837dbf3.png"
+  }
+}
