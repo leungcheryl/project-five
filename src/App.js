@@ -4,13 +4,15 @@ import axios from 'axios';
 import DisplayMovie from './DisplayMovie.js';
 import movieimg from './assets/img-1.jpg';
 import maindog from './assets/main-dog.png'
-import movieicon from './assets/movie-icon.png'
+import movieicon from './assets/movie-icon.png';
+import lifeguardlogo from './assets/lifeguard-stamp.jpg'
+
 
 
 const formatDogDeath = (value) => {
   if (value === null) return 'Watch At Your Own Risk';
-  if (value === false) return 'A Dog Doesn\'t Die';
-  if (value === true) return 'A Dog Dies';
+  if (value === false) return 'Good to Go! A Dog Doesn\'t Die :)';
+  if (value === true) return 'Don\'t Watch! A Dog Dies :( ';
 };
 
 
@@ -153,6 +155,7 @@ class App extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
+
     this.setState({
       userInput: ''
     })
@@ -173,13 +176,18 @@ class App extends Component {
   render() {
     return (
 
-    <div className="wrapper">
+    <div className="App">
 
       <div className="header-container">
         <div className="header">
-          <h1>The Movie Guard</h1>
-           <h2>Doggy Edition</h2>
-          <img src={movieicon} alt="Picture of Popcorn, Movie Items"/>
+          <div className="header-title">
+            <h1>The <span>Movie</span></h1>
+            <img src={lifeguardlogo} alt='Lifeguard Logo' />
+          </div>
+          
+
+           <h2>(Doggy Edition)</h2>
+          <img src={movieicon} alt="Picture of Movie Camera"/>
         </div>
         <div className="background-dog">
           <img src={maindog} alt="Dog wearing 3D glasses and holding popcorn"/>
@@ -191,37 +199,41 @@ class App extends Component {
       </div>
 
       <div className="main-container">
-        <div className="form-description">
-          <img src={movieimg} alt="Movie and Popcorn Icons"/>
-          <p>No one wants to see a dog die in a movie.</p> <p>Search a movie in the box and press the Search! button to make sure you never have to see a movie that a dog dies in again.</p><p> Protect dogs at all costs!</p>
+        <div className="wrapper">
+          <div className="form-description">
+            <img src={movieimg} alt="Movie and Popcorn Icons"/>
+            <p>No one wants to see a dog die in a movie.</p> <p>Search a movie in the box and press the Search! button to make sure you never have to see a movie that a dog dies in again.</p><p> Protect dogs at all costs!</p>
+          </div>
+          <div className="form">
+            <form>
+              <input 
+                onChange={this.handleChange} 
+                type='text' 
+                placeholder='Type Movie Here' 
+                value={this.state.userInput}
+                name='search' />
+              <button onClick={this.handleClick}>Search!</button>
+              <button type="reset" value="Reset" onClick={this.handleReset}>Reset</button>
+            </form>
+          </div>
         </div>
-        <div className="form">
-          <form>
-            <input 
-              onChange={this.handleChange} 
-              type='text' 
-              placeholder='Type Movie Here' 
-              value={this.state.userInput}
-              name='search' />
-            <button onClick={this.handleClick}>Search!</button>
-            <button type="reset" value="Reset" onClick={this.handleReset}>Reset</button>
-          </form>
-        </div>
-      </div>
-      <div className="display">
-        {this.state.allMovies.map(movie => {
-          return (
-            <div>
-              <DisplayMovie
-                img={movie.poster}
-                name={movie.name}
-                dogStat={formatDogDeath(movie.dogDies)}
-              />
-            </div>
-          )
-        })}
-      </div>
+        <p class="scroll-here">Scroll Down for Movie Results</p>
 
+        <div className="display" id="display">
+          
+          {this.state.allMovies.map(movie => {
+            return (
+              <div class="display-movie">
+                <DisplayMovie
+                  img={movie.poster}
+                  name={movie.name}
+                  dogStat={formatDogDeath(movie.dogDies)}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
     );
   }
