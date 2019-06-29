@@ -3,16 +3,13 @@ import './App.css';
 import axios from 'axios';
 import DisplayMovie from './DisplayMovie.js';
 import movieimg from './assets/img-1.jpg';
-import maindog from './assets/main-dog.png'
-import movieicon from './assets/movie-icon.png';
-import lifeguardlogo from './assets/lifeguard-stamp.jpg'
-
+import dog from './assets/dog-1.jpg'
 
 
 const formatDogDeath = (value) => {
-  if (value === null) return 'Watch At Your Own Risk';
-  if (value === false) return 'Good to Go! A Dog Doesn\'t Die :)';
-  if (value === true) return 'Don\'t Watch! A Dog Dies :( ';
+  if (value === null) return '🐶 Watch At Your Own Risk';
+  if (value === false) return '✅ YES! You can watch! No Dogs Die ';
+  if (value === true) return '❌ NO! DON\'T WATCH! A Dog Dies';
 };
 
 
@@ -109,7 +106,6 @@ class App extends Component {
     Promise.all(selectedMovies.map(async (value, i) => {
       try {
         const url = `https://api.themoviedb.org/3/search/movie?api_key=8d57b009677e25546dc89ff6368e4fbe&`
-       
         const poster = await axios.get(`${url}`, {
         method: 'GET',
         dataType: 'jsonp',
@@ -130,7 +126,6 @@ class App extends Component {
           } else {
             posterUrl = `http://image.tmdb.org/t/p/w500${moviePoster[0]}`
           }
-
           return {
             ...this.state.allMovies[i],
             poster: posterUrl
@@ -155,7 +150,6 @@ class App extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-
     this.setState({
       userInput: ''
     })
@@ -180,17 +174,8 @@ class App extends Component {
 
       <div className="header-container">
         <div className="header">
-          <div className="header-title">
-            <h1>The <span>Movie</span></h1>
-            <img src={lifeguardlogo} alt='Lifeguard Logo' />
-          </div>
-          
-
-           <h2>(Doggy Edition)</h2>
-          <img src={movieicon} alt="Picture of Movie Camera"/>
-        </div>
-        <div className="background-dog">
-          <img src={maindog} alt="Dog wearing 3D glasses and holding popcorn"/>
+          <h1>Protect Dogs at All Costs!</h1>
+          <h2>Movie Edition</h2>
         </div>
         <div className='scroll-note'>
           <p>Scroll Down To Search a Movie <span>&#9660;</span>
@@ -201,8 +186,9 @@ class App extends Component {
       <div className="main-container">
         <div className="wrapper">
           <div className="form-description">
+            
             <img src={movieimg} alt="Movie and Popcorn Icons"/>
-            <p>No one wants to see a dog die in a movie.</p> <p>Search a movie in the box and press the Search! button to make sure you never have to see a movie that a dog dies in again.</p><p> Protect dogs at all costs!</p>
+            <p>No one wants to see a dog die in a movie.</p> <p>Search a movie in the box and press the Search! button </p><p>to make sure you never have to see a movie that a dog dies in again.</p>
           </div>
           <div className="form">
             <form>
@@ -219,8 +205,12 @@ class App extends Component {
         </div>
         <p class="scroll-here">Scroll Down for Movie Results</p>
 
+
         <div className="display" id="display">
-          
+          <div className="section-contain">
+            <img className="small-dog" src={dog} alt=""/>
+            <p>Is the dog safe?</p>
+          </div>
           {this.state.allMovies.map(movie => {
             return (
               <div class="display-movie">
@@ -232,6 +222,7 @@ class App extends Component {
               </div>
             )
           })}
+
         </div>
       </div>
     </div>
