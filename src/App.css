@@ -74,12 +74,13 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 }
 
 .header-container {
-    background-image: url(assets/4.jpg);
-    background-size: cover;
+    background-image: url(assets/img-1.jpg);
+    background-size: 50%;
     height: 100vh;
-    background-position: center;
-    border: 5px solid black;
-  
+    background-position: 80%;
+    border: 3px solid black;
+    background-repeat: no-repeat;
+    background-color: #F2F2F2;
 }
 
 .scroll-note {
@@ -150,28 +151,9 @@ h2 {
     text-shadow: 3px 2px black;
 }
 
-.background-dog {
-    width: 50%;
-    height: 97vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-direction: column;
-    margin-left: -10%;
-    padding-top: 1%;
-}
-
-.background-dog img {
-    max-width: 100%;
-    width: 85%;
-    padding-left: 3%;
-    margin-top: 50px;
-    display: block;
-    overflow: hidden;
-}
 
 .main-container {
-    background-color: #F2F2F2;
+    background-color:#BED8CD;
     overflow: hidden;
 }
 
@@ -225,7 +207,7 @@ form {
 
 .display {
     display: flex;
-    background-color: #C3D7CE;
+    background-color: #9EBED0;
     width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
@@ -234,6 +216,9 @@ form {
     border-top: 2px dotted black;
 }
 
+p.movie-name {
+    height: 90px;
+}
 .movie p {
     font-family: 'Cutive', sans-serif;
     font-size: 1.5rem; 
@@ -245,18 +230,21 @@ form {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    height: 40px;
+    height: 50px;
 }
 
 .poster img {
     max-width: 100%;
     border: 6px solid white;
+    max-height: 600px;
+    max-width: 350px;
+    height: 500px;
 }
 
 .movie {
     text-align: center;
     height: 750px;
-    width: 400px;
+    width: 375px;
     padding: 5%;
     display: flex;
     flex-direction: column;
@@ -266,7 +254,7 @@ form {
 
 p.dog {
     font-family: 'Montserrat', cursive;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: grey;
     letter-spacing: 1px;
@@ -284,18 +272,16 @@ p.dog {
     text-transform: uppercase;
 }
 
-.small-dog {
-    width: 20%;
-}
 
 .section-contain {
     text-align: center;
+    width: 100%;
 }
 
 .section-contain p {
     font-family: 'Josefin Slab', cursive;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding-bottom: 3%;
     letter-spacing: 2px;
 }

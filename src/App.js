@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import DisplayMovie from './DisplayMovie.js';
-import movieimg from './assets/img-1.jpg';
 import dog from './assets/dog-1.jpg'
 
 
@@ -187,7 +186,7 @@ class App extends Component {
         <div className="wrapper">
           <div className="form-description">
             
-            <img src={movieimg} alt="Movie and Popcorn Icons"/>
+            <img src={dog} alt="Movie and Popcorn Icons"/>
             <p>No one wants to see a dog die in a movie.</p> <p>Search a movie in the box and press the Search! button </p><p>to make sure you never have to see a movie that a dog dies in again.</p>
           </div>
           <div className="form">
@@ -208,7 +207,6 @@ class App extends Component {
 
         <div className="display" id="display">
           <div className="section-contain">
-            <img className="small-dog" src={dog} alt=""/>
             <p>Is the dog safe?</p>
           </div>
           {this.state.allMovies.map(movie => {
